@@ -22,6 +22,11 @@ namespace Utilities {
 			Logger::Initialize();
 		}
 
-		static void Close() { fclose(console); }
+		static void Close() {
+			fclose(stdout);
+			fclose(stderr);
+			fclose(stdin);
+			FreeConsole();
+		}
 	}
 };

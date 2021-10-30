@@ -21,10 +21,19 @@
     <ClInclude Include="Source\Utilities\Logger.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Pointers.h">
+    <ClInclude Include="Source\Global.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Hooks.h">
+    <ClInclude Include="Source\SwapBuffers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Interface\Menu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Interface\Interface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Interface\Console.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -54,6 +63,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\Vendor\imgui\backends\imgui_impl_win32.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\SwapBuffers.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Global.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

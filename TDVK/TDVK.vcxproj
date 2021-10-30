@@ -170,8 +170,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Source\Hooks.h" />
-    <ClInclude Include="Source\Pointers.h" />
+    <ClInclude Include="Source\Global.h" />
+    <ClInclude Include="Source\Interface\Console.h" />
+    <ClInclude Include="Source\Interface\Interface.h" />
+    <ClInclude Include="Source\Interface\Menu.h" />
+    <ClInclude Include="Source\SwapBuffers.h" />
     <ClInclude Include="Source\Utilities\Console.h" />
     <ClInclude Include="Source\Utilities\Logger.h" />
   </ItemGroup>
@@ -184,6 +187,8 @@
     <ClCompile Include="..\Vendor\imgui\imgui_tables.cpp" />
     <ClCompile Include="..\Vendor\imgui\imgui_widgets.cpp" />
     <ClCompile Include="Source\DLLMain.cpp" />
+    <ClCompile Include="Source\Global.cpp" />
+    <ClCompile Include="Source\SwapBuffers.cpp" />
     <ClCompile Include="Source\Utilities\Logger.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

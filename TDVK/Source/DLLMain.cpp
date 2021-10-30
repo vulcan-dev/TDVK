@@ -1,7 +1,9 @@
+#define _WIN32_WINNT 0x0500
 #include "Utilities/Console.h"
-#include "Pointers.h"
-#include <exception>
-#include "Hooks.h"
+#include "Interface/Menu.h"
+#include "Interface/Console.h"
+#include "SwapBuffers.h"
+#include "Global.h"
 
 DWORD WINAPI StartRoutine(HMODULE hModule) {
 	::Utilities::Console::Initialize();
@@ -10,15 +12,26 @@ DWORD WINAPI StartRoutine(HMODULE hModule) {
 
 	Pointers::hModule = hModule;
 	Pointers::moduleBase = reinterpret_cast<uintptr_t>(GetModuleHandle(nullptr));
+	Pointers::gWindow = FindWindow(nullptr, L"Teardown");
 
-	CORE_INFO("Module Base: {}", fmt::ptr(&Pointers::moduleBase));
-	Hooks::InitializeSwapBuffer();
+	InitializeSwapBufferHook();
+	InitializeHIDHook();
+
+	CMenu Menu;
+	CConsole Console;
+	Pointers::renderFunctions.push_back(std::bind(&CMenu::Render, &Menu));
+	Pointers::renderFunctions.push_back(std::bind(&CConsole::Render, &Console));
 
 	while (!GetAsyncKeyState(VK_END)) {
-		
+
 	}
 
 	::Utilities::Console::Close();
+
+	DestroyHIDHook();
+	DestroySwapBufferHook();
+
+	FreeLibraryAndExitThread(hModule, 0);
 
 	return TRUE;
 }
@@ -33,7 +46,6 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserv
 	case DLL_THREAD_DETACH:
 		break;
 	case DLL_PROCESS_DETACH:
-		FreeLibraryAndExitThread(hModule, 0);
 		break;
 	default: break;
 	}
